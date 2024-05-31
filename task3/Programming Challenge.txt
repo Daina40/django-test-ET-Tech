@@ -1,0 +1,47 @@
+                                         Using Python Language
+
+
+#Problem 1- Return indices of the two numbers such that they add up to target.
+
+def fined_index(nums, target):
+    n = len(nums)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if nums[i] + nums[j] == target:
+                return [i, j]
+    return "Not found"
+
+
+# Test cases:
+nums = [2, 11, 7, 15]
+target = 17
+result = fined_index(nums, target)
+print(result)
+
+
+
+#Problem 2- Same type of brackets.
+
+def pairBrackets(open, close):
+    if open == '[' and close == ']':
+        return True
+    if open == '{' and close == '}':
+        return True
+    if open == '(' and close == ')':
+        return True
+    return False
+
+def sameBrackets(s):
+    stack = []
+    for i in s:
+        if i in '([{':
+            stack.append(i)
+        elif i in ')]}':
+            if not stack or not pairBrackets(stack[-1], i):
+                return False
+            stack.pop()
+    return len(stack) == 0
+
+# Test cases:
+s = "()[]{}"
+print(sameBrackets(s))
